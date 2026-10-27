@@ -141,9 +141,8 @@ Open `scenes/gui/hex_editor/hex_editor.tscn`.
 - Per-tab program text via `_build_program_text()` — definitions, a
   `do` separator, then the Do hex's main expression.
 - Display variant via `_display_text(code)`: strips redundant parens
-  (single-atom wraps + double-paren collapse, iterated to fixpoint)
-  and substitutes palette identifiers with their color emojis
-  (🟥 🟩 🟦 💠 🟪 🟨 ⬜ ⬛). The parser receives the plain text.
+  (single-atom wraps + double-paren collapse, iterated to fixpoint).
+  The parser receives the plain text.
 - Soft enforcement: per-hex `validate(canvas) → {status, message}`;
   the `Run` button lists every malformed hex in the output panel
   before refusing to evaluate.
@@ -167,16 +166,16 @@ logical input. `Anchor`, `MatchAnchor`, `IfAnchor`, `TupleAnchor`, and
 8 entries; `user_count() = 6` hides the last two from sidebar
 pickers:
 
-| Index | Name | Glyph | Color | Emoji | Notes |
-|---|---|---|---|---|---|
-| 0 | red | ● | red | 🟥 | user-pickable |
-| 1 | green | ◆ | green | 🟩 | user-pickable |
-| 2 | blue | ★ | blue | 🟦 | user-pickable |
-| 3 | cyan | ◉ | cyan | 💠 | user-pickable |
-| 4 | magenta | ♥ | magenta | 🟪 | user-pickable |
-| 5 | yellow | ▲ | yellow | 🟨 | user-pickable |
-| 6 | white | □ | white | ⬜ | **reserved** — checker injection only |
-| 7 | black | ■ | black | ⬛ | **reserved** — checker injection only |
+| Index | Name | Glyph | Color | Notes |
+|---|---|---|---|---|
+| 0 | red | ● | red | user-pickable |
+| 1 | green | ◆ | green | user-pickable |
+| 2 | blue | ★ | blue | user-pickable |
+| 3 | cyan | ◉ | cyan | user-pickable |
+| 4 | magenta | ♥ | magenta | user-pickable |
+| 5 | yellow | ▲ | yellow | user-pickable |
+| 6 | white | □ | white | **reserved** — checker injection only |
+| 7 | black | ■ | black | **reserved** — checker injection only |
 
 ---
 
@@ -253,95 +252,6 @@ chapter intros. Phase 19 adds a `hex` section with
 yet round-tripped — Phase 19.8 open item.
 
 ---
-
-## Roadmap — see `docs/TODO.md` for the full state
-
-### Prototype phases 1–18: complete
-
-Foundation (levels, anchor, hex base, placement, wires, palette),
-the hex types themselves, validation, text emission, and UI polish
-all landed. The TODO calls out what's checked vs deferred for each
-phase with brief reasons. Unchecked items are either cosmetic
-polish (animation, glow alerts, area-select, right-click menu) or
-wait on the emission registry (scope sidebar, scope-filtered
-inscription pickers, eta-abstraction). **None of those block the
-gameplay-loop migration.**
-
-### Phase 19: gameplay-loop migration (the actual remaining work)
-
-The gameplay loop is being **re-designed** rather than ported. The
-new model:
-
-- **Tabs replace per-exercise files.** ~6 persistent workspace
-  tabs that the player builds programs in freely.
-- **Jobs replace exercises.** A jobs panel lists pending jobs; the
-  player picks one and submits the *currently open tab's program*
-  against it. Solving a job moves it to the completed-jobs archive
-  with the submitted program text preserved + copy-to-clipboard.
-- **Blueprints replace templates.** User-captured snippets stamped
-  from a library, Shapez 2 / Factorio style.
-- **Progression gates hex types, not snippets.** Renown unlocks
-  new hex types in the palette; locked entries hidden / grayed out.
-
-The Checker / SaveManager / TemplateManager singletons stay — only
-the data they consume gets renamed and re-shaped, and the hex
-editor calls them through new entry points.
-
-Sub-phases 19.1 through 19.10 in the TODO cover: tabbed editor,
-jobs panel + submit, completed-jobs archive, blueprints library,
-progression-locked palette, parameter injection via white/black,
-the new UI structure, the JSON save format, chapter intros +
-encyclopedia, and main-menu wiring + Quick REPL.
-
-**Suggested implementation order**:
-1. Tabbed editor (everything else depends on multiple workspaces).
-2. Jobs panel + submit + Checker integration (proves the model
-   end-to-end).
-3. Completed-jobs archive + SaveManager extensions.
-4. Progression-locked palette.
-5. Blueprints library (capture-current-tab first; drag-rect later).
-6. JSON save format.
-7. Chapter intros + encyclopedia + main-menu switch + Quick REPL.
-
----
-
-## Handoff context for a new agent
-
-If you're picking this up cold:
-
-1. **Read `docs/HEX_DESIGN.md`** first — the visual language semantics
-   (wires vs emissions, levels = scopes, anchors, the inscription
-   model). One page.
-2. **Read `docs/TODO.md`** — every section has accurate
-   status + brief notes on deferred items. Phase 19 is the only
-   open phase by area, but it's a big one.
-3. **Open `scenes/gui/hex_editor/hex_editor.tscn`** in the Godot
-   editor (or run it headless) and play with it for ten minutes —
-   place hexes, descend into a Let body, rotate things, submit a
-   factorial. The keymap overlay (`?`) is your friend.
-4. The editor is **one big script** at
-   `scenes/gui/hex_editor/hex_editor.gd` (~1850 lines, sectioned
-   by `# ── …` headers). Per-hex behavior lives in
-   `src/classes/hex_nodes/` — one short file per hex type.
-5. The text-based `Editor` (`scenes/gui/editor/editor.gd`) is the
-   reference for what Phase 19 needs to surface — exercise pane,
-   per-test result rendering, chapter intros, encyclopedia, quick
-   REPL, save / renown plumbing.
-
-Whatever the next iteration is, start by **reading the relevant
-section of `docs/TODO.md`** — every unchecked box carries a note
-explaining its current state and what unblocks it.
-
----
-
-## Legacy: authoring exercises for the text editor
-
-Until Phase 19 lands, the shipping gameplay loop is the text editor
-(`scenes/gui/editor/`). Its exercise / chapter / template / example
-schema is described below — the same data file (`data/static_data.json`)
-will be repurposed for the new jobs model in Phase 19, with
-`unlocks_templates` becoming `unlocks_hexes` and `exercises`
-becoming `jobs`.
 
 ### Exercises
 
