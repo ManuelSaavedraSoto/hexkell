@@ -1,0 +1,12 @@
+# Godot 4+ specific ignores
+.godot/
+.editorconfig
+/android/
+
+# VSCode specific ignores
+.vscode/
+
+# Obsidian specific ignores
+.obsidian/
+# Non-redistributable audio (Bleeoop license) — keep out of the open-source repo
+assets/audio/sfx/UIClick_BLEEOOP_*

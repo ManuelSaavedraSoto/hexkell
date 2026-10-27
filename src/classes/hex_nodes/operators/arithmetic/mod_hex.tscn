@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://tte36tn4h0dy"]
+
+[ext_resource type="PackedScene" uid="uid://ce6li67phjy3" path="res://src/classes/hex_nodes/hex_node.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://daub0tamdliyh" path="res://src/classes/hex_nodes/operators/arithmetic/mod_hex.gd" id="2_script"]
+
+[node name="ModHex" unique_id=274299583 instance=ExtResource("1_base")]
+script = ExtResource("2_script")

@@ -1,0 +1,218 @@
+{
+	"templates": {
+		"lambda": "\\{- params -} -> {- body -}",
+		"let": "let {- name -} = {- value -} in {- body -}",
+		"let_rec": "let rec {- name -} = {- value -} in {- body -}",
+		"if": "if {- condition -}\n\tthen {- true_branch -}\n\telse {- false_branch -}",
+		"match": "match {- value -} with\n\t",
+		"case": "| {- pattern -} = {- body -}",
+		"range": "[{- from -}..{- to -}]"
+	},
+	"exercises": {
+		"exercise_01": {
+			"name": "Return a number",
+			"description": "Write a single expression whose value is any integer. Just typing the number on its own line is a valid program.",
+			"renown_required": 0,
+			"renown_reward": 2,
+			"tests": [
+				{
+					"expected_type": 0
+				}
+			]
+		},
+		"exercise_02": {
+			"name": "Return true",
+			"description": "Return the boolean [code]true[/code]. The starter code already has [code]true[/code] written for you — just remove the leading [code]--[/code] so it stops being a comment.",
+			"renown_required": 2,
+			"renown_reward": 3,
+			"starter_code": "-- true",
+			"tests": [
+				{
+					"expected": true
+				}
+			]
+		},
+		"exercise_03": {
+			"name": "Return a tuple",
+			"description": "Return any tuple. A tuple groups a fixed number of values written inside parentheses, separated by commas — for example [code](1, 2)[/code] or [code](true, 0, 99)[/code].",
+			"renown_required": 5,
+			"renown_reward": 5,
+			"tests": [
+				{
+					"expected_type": 2
+				}
+			]
+		},
+		"exercise_04": {
+			"name": "Return a list",
+			"description": "Return any non-empty list of numbers. You can write the elements out by hand ([code][10, 20, 30][/code]) or use a range like [code][1..5][/code]. The [b]range[/b] template, just unlocked, gives you a head start.",
+			"renown_required": 10,
+			"renown_reward": 10,
+			"template_hints": [
+				"range"
+			],
+			"tests": [
+				{
+					"expected_type": 3
+				}
+			]
+		},
+		"exercise_05": {
+			"name": "Double a Number",
+			"description": "Write a function that takes one argument and returns its double.",
+			"renown_required": 20,
+			"renown_reward": 10,
+			"template_hints": [
+				"lambda"
+			],
+			"tests": [
+				{
+					"input": 5,
+					"expected": 10
+				},
+				{
+					"input": -3,
+					"expected": -6
+				},
+				{
+					"input": 0,
+					"expected": 0
+				}
+			]
+		},
+		"exercise_06": {
+			"name": "Add Two Numbers",
+			"description": "Write a function that takes two arguments and returns their sum.",
+			"renown_required": 30,
+			"renown_reward": 15,
+			"template_hints": [
+				"lambda"
+			],
+			"tests": [
+				{
+					"input": [
+						2,
+						3
+					],
+					"expected": 5
+				},
+				{
+					"input": [
+						-4,
+						4
+					],
+					"expected": 0
+				},
+				{
+					"input": [
+						10,
+						25
+					],
+					"expected": 35
+				}
+			]
+		},
+		"exercise_07": {
+			"name": "Square a Number",
+			"description": "Write a function that returns the square of its input.",
+			"renown_required": 45,
+			"renown_reward": 20,
+			"template_hints": [
+				"let"
+			],
+			"tests": [
+				{
+					"input": 4,
+					"expected": 16
+				},
+				{
+					"input": 0,
+					"expected": 0
+				},
+				{
+					"input": 7,
+					"expected": 49
+				}
+			]
+		},
+		"exercise_08": {
+			"name": "Sum of List",
+			"description": "Write a function that returns the sum of a list of integers. Hint: use foldr or recursion.",
+			"renown_required": 65,
+			"renown_reward": 25,
+			"template_hints": [
+				"let_rec",
+				"match"
+			],
+			"tests": [
+				{
+					"input": [
+						[
+							1,
+							2,
+							3,
+							4
+						]
+					],
+					"expected": 10
+				},
+				{
+					"input": [
+						[]
+					],
+					"expected": 0
+				},
+				{
+					"input": [
+						[
+							5,
+							5,
+							5
+						]
+					],
+					"expected": 15
+				}
+			]
+		},
+		"exercise_09": {
+			"name": "Length of List",
+			"description": "Write a function that returns the number of elements in a list.",
+			"renown_required": 90,
+			"renown_reward": 40,
+			"template_hints": [
+				"let_rec",
+				"match"
+			],
+			"tests": [
+				{
+					"input": [
+						[
+							1,
+							2,
+							3
+						]
+					],
+					"expected": 3
+				},
+				{
+					"input": [
+						[]
+					],
+					"expected": 0
+				},
+				{
+					"input": [
+						[
+							7,
+							7,
+							7,
+							7,
+							7
+						]
+					],
+					"expected": 5
+				}
+			]
+		}
+	}
+}

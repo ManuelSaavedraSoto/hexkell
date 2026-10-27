@@ -1,0 +1,23 @@
+[gd_resource type="CodeHighlighter" format=3 uid="uid://b53cs6hqm10dm"]
+
+[resource]
+resource_local_to_scene = true
+number_color = Color(0.8, 1, 0.6, 1)
+symbol_color = Color(1, 0.8, 0.6, 1)
+function_color = Color(0.9, 0.9, 0.9, 1)
+keyword_colors = {
+"else": Color(0.4, 0.8, 1, 1),
+"false": Color(0.8, 1, 0.6, 1),
+"if": Color(0.4, 0.8, 1, 1),
+"in": Color(0.4, 0.8, 1, 1),
+"let": Color(0.4, 0.8, 1, 1),
+"match": Color(0.4, 0.8, 1, 1),
+"rec": Color(0.4, 0.8, 1, 1),
+"then": Color(0.4, 0.8, 1, 1),
+"true": Color(0.8, 1, 0.6, 1),
+"with": Color(0.4, 0.8, 1, 1)
+}
+color_regions = {
+"--": Color(0.5, 0.5, 0.5, 1),
+"{- -}": Color(0.5, 0.5, 0.5, 1)
+}

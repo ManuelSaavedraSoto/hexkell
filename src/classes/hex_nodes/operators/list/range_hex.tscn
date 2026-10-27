@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d2ge6immrcioj"]
+
+[ext_resource type="PackedScene" uid="uid://ce6li67phjy3" path="res://src/classes/hex_nodes/hex_node.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://cdu4imiqquogp" path="res://src/classes/hex_nodes/operators/list/range_hex.gd" id="2_script"]
+
+[node name="RangeHex" unique_id=1072852394 instance=ExtResource("1_base")]
+script = ExtResource("2_script")

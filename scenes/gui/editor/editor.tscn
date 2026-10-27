@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://brvjnkjqtkv7h"]
+
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="1_8e5ta"]
+[ext_resource type="Script" uid="uid://c63nnhd300vuf" path="res://scenes/gui/editor/editor.gd" id="1_h5m7w"]
+[ext_resource type="CodeHighlighter" uid="uid://b53cs6hqm10dm" path="res://assets/resources/hexkell_code_highlighter.tres" id="2_nfc3v"]
+[ext_resource type="Script" uid="uid://bpdsfvmmp6s4u" path="res://scenes/gui/editor/code_editor.gd" id="4_ibvm8"]
+
+[node name="Editor" type="Control" unique_id=1729280898]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8e5ta")
+script = ExtResource("1_h5m7w")
+
+[node name="Background" type="ColorRect" parent="." unique_id=848566208]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.12, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1926141694]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1401157329]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="MenuPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1015136392]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="MenuButton" type="Button" parent="MarginContainer/HBoxContainer/MenuPanel" unique_id=823100099]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Open menu (Esc)"
+text = "☰ Menu"
+
+[node name="SidebarStatic" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MenuPanel" unique_id=823100105]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="ExerciseHeader" type="Label" parent="MarginContainer/HBoxContainer/MenuPanel" unique_id=823100101]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Exercises"
+
+[node name="ExerciseSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/MenuPanel" unique_id=823100102]
+layout_mode = 2
+
+[node name="ExerciseScroll" type="ScrollContainer" parent="MarginContainer/HBoxContainer/MenuPanel" unique_id=823100103]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ExercisesContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MenuPanel/ExerciseScroll" unique_id=823100104]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="EditorPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1309758533]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CodePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/EditorPanel" unique_id=1899494151]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/EditorPanel/CodePanel" unique_id=1591652381]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CodeEditor" type="CodeEdit" parent="MarginContainer/HBoxContainer/EditorPanel/CodePanel/MarginContainer" unique_id=643864037]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 2
+theme_override_colors/background_color = Color(0.12, 0.12, 0.15, 1)
+theme_override_font_sizes/font_size = 12
+text = "
+"
+placeholder_text = "Write your functional code here...
+Try: Load an example from the menu
+Or click a template to insert code patterns"
+wrap_mode = 1
+syntax_highlighter = ExtResource("2_nfc3v")
+highlight_current_line = true
+draw_tabs = true
+gutters_draw_line_numbers = true
+auto_brace_completion_enabled = true
+script = ExtResource("4_ibvm8")
+
+[node name="Controls" type="HBoxContainer" parent="MarginContainer/HBoxContainer/EditorPanel" unique_id=1207935855]
+layout_mode = 2
+
+[node name="EvaluateButton" type="Button" parent="MarginContainer/HBoxContainer/EditorPanel/Controls" unique_id=137548857]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Run (Ctrl+Enter)"
+
+[node name="ClearEditorButton" type="Button" parent="MarginContainer/HBoxContainer/EditorPanel/Controls" unique_id=2127234096]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Clear Editor (Ctrl+L)"
+
+[node name="OutputPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/EditorPanel" unique_id=2126563880]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/EditorPanel/OutputPanel" unique_id=1107013343]
+layout_mode = 2
+
+[node name="OutputHeader" type="HBoxContainer" parent="MarginContainer/HBoxContainer/EditorPanel/OutputPanel/VBoxContainer" unique_id=644600771]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/EditorPanel/OutputPanel/VBoxContainer/OutputHeader" unique_id=141244556]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "Output:"
+
+[node name="ClearButton" type="Button" parent="MarginContainer/HBoxContainer/EditorPanel/OutputPanel/VBoxContainer/OutputHeader" unique_id=1383104150]
+layout_mode = 2
+text = "Clear (Ctrl+K)"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/EditorPanel/OutputPanel/VBoxContainer" unique_id=1768968330]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="OutputLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/EditorPanel/OutputPanel/VBoxContainer/ScrollContainer" unique_id=1039595177]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_colors/default_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+scroll_following = true
+selection_enabled = true
+
+[node name="ToolPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1846542019]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TemplateLabel" type="Label" parent="MarginContainer/HBoxContainer/ToolPanel" unique_id=1272276688]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Code Templates"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/ToolPanel" unique_id=1895707726]
+layout_mode = 2
+
+[node name="TemplateActions" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ToolPanel" unique_id=921206041]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SaveTemplateButton" type="Button" parent="MarginContainer/HBoxContainer/ToolPanel/TemplateActions" unique_id=1121073076]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Save current code as template"
+text = "💾 Save"
+
+[node name="ManageTemplatesButton" type="Button" parent="MarginContainer/HBoxContainer/ToolPanel/TemplateActions" unique_id=241994946]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Delete custom templates"
+text = "🗑️ Manage"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/ToolPanel" unique_id=597446339]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/ToolPanel" unique_id=910379112]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TemplateContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ToolPanel/ScrollContainer" unique_id=556900933]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/EditorPanel/Controls/EvaluateButton" to="." method="_evaluate_code"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/EditorPanel/Controls/ClearEditorButton" to="." method="_on_clear_editor_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/EditorPanel/OutputPanel/VBoxContainer/OutputHeader/ClearButton" to="." method="_clear_output"]

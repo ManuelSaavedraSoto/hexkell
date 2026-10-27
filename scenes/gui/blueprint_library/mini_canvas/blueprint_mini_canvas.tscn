@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bwkuhdneatw41"]
+
+[ext_resource type="Script" uid="uid://8dr3aavcdbqn" path="res://scenes/gui/blueprint_library/mini_canvas/blueprint_mini_canvas.gd" id="1_jp0a7"]
+[ext_resource type="Shader" uid="uid://4m0e04i7lgs" path="res://assets/shaders/hex_grid.gdshader" id="2_a73jv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grid"]
+shader = ExtResource("2_a73jv")
+shader_parameter/cam_pos = Vector2(0, 0)
+shader_parameter/zoom = 1.0
+shader_parameter/screen_size = Vector2(640, 480)
+shader_parameter/hex_size = 64.0
+shader_parameter/line_thickness = 2.0
+shader_parameter/grid_color = Color(0.4, 0.6, 1, 0.2)
+shader_parameter/bg_color = Color(0.12, 0.12, 0.14, 1)
+
+[node name="BlueprintMiniCanvas" type="Node2D" unique_id=784583401]
+process_mode = 2
+script = ExtResource("1_jp0a7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=274955075]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=411560923]
+material = SubResource("ShaderMaterial_grid")
+offset_left = -640.0
+offset_top = -480.0
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=83458176]
+
+[node name="Connections" type="Node2D" parent="." unique_id=1371158409]
+
+[node name="Nodes" type="Node2D" parent="." unique_id=155340230]

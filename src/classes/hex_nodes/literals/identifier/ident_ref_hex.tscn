@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://drj0xiuy23tic"]
+
+[ext_resource type="PackedScene" uid="uid://ce6li67phjy3" path="res://src/classes/hex_nodes/hex_node.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://bp0oce6lclulp" path="res://src/classes/hex_nodes/literals/identifier/ident_ref_hex.gd" id="2_script"]
+
+[node name="IdentRefHex" unique_id=830099069 instance=ExtResource("1_base")]
+script = ExtResource("2_script")

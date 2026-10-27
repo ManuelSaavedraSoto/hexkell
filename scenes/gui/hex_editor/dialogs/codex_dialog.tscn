@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://c4ie8gowcdgvs"]
+
+[ext_resource type="Script" uid="uid://cp84gf32vxpsh" path="res://scenes/gui/hex_editor/dialogs/codex_dialog.gd" id="1_codex"]
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" uid="uid://bfn25pmrb21bq" path="res://assets/icons/buttons/cross.tres" id="3_1x6h6"]
+
+[node name="CodexDialog" type="Control" unique_id=1092030522]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_theme")
+script = ExtResource("1_codex")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=493997256]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.45)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2033583944]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=583781683]
+custom_minimum_size = Vector2(950, 600)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=447831005]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin" unique_id=972911071]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=351203265]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/HeaderBar" unique_id=1782466633]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Codex — Concepts"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/HeaderBar" unique_id=874221352]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("3_1x6h6")
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=1548077624]
+layout_mode = 2
+
+[node name="Body" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=1939589954]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="LeftColumn" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=102265026]
+custom_maximum_size = Vector2(250, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="LeftHeader" type="Label" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/LeftColumn" unique_id=1876226725]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "Concepts"
+
+[node name="ConceptList" type="ItemList" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/LeftColumn" unique_id=696752313]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=1301473467]
+layout_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=1838163457]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="RightHeader" type="Label" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/RightColumn" unique_id=97468814]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "Details"
+
+[node name="ContentLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/RightColumn" unique_id=312674668]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+text = "Concepts coming soon — this is where the codex lives. Functions, tail recursion, pattern matching, and the rest will land here as the game's chapter content fills in."
+selection_enabled = true

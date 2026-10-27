@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dw58auig5dcah"]
+
+[ext_resource type="Script" uid="uid://b2nse5t2qvuv4" path="res://scenes/gui/common/template_hint_toast.gd" id="1_toast"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.18, 0.15, 0.05, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 6
+
+[node name="TemplateHintToast" type="PanelContainer" unique_id=461159369]
+visible = false
+custom_minimum_size = Vector2(280, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+script = ExtResource("1_toast")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=676784822]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin" unique_id=1028652168]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Header" type="HBoxContainer" parent="Margin/VBoxContainer" unique_id=1969740973]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Margin/VBoxContainer/Header" unique_id=809434314]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "💡 Tip"
+
+[node name="CloseButton" type="Button" parent="Margin/VBoxContainer/Header" unique_id=760017663]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Dismiss"
+theme_override_font_sizes/font_size = 14
+text = "✕"
+flat = true
+
+[node name="MessageLabel" type="RichTextLabel" parent="Margin/VBoxContainer" unique_id=622421077]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.96, 0.92, 0.78, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="TemplateList" type="VBoxContainer" parent="Margin/VBoxContainer" unique_id=532404447]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="AutoHideTimer" type="Timer" parent="." unique_id=220062846]
+wait_time = 12.0
+one_shot = true

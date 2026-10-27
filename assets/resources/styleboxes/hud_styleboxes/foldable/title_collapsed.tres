@@ -1,0 +1,15 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cptwb82hq7qe2"]
+
+[ext_resource type="Texture2D" uid="uid://cte0gh83o3es6" path="res://assets/spritesheets/ui_sprite_sheet.svg" id="1_nikel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldh8y"]
+atlas = ExtResource("1_nikel")
+region = Rect2(414, 226, 48, 48)
+
+[resource]
+texture = SubResource("AtlasTexture_ldh8y")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.25490198, 0.3529412, 0.38431373, 1)

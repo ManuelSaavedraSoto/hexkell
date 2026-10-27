@@ -1,0 +1,16 @@
+{
+	"templates": {
+		"quicksort": "let rec quicksort xs =\n\tmatch xs with\n\t| [] = []\n\t| pivot : tail =\n\t\tlet less = filter (<= pivot) tail in\n\t\tlet greater = filter (> pivot) tail in\n\t\tquicksort less ++ [pivot] ++ quicksort greater",
+		"foldl": "let rec foldl f acc xs =\n\tmatch xs with\n\t| [] = acc\n\t| x:xs = foldl f (f acc x) xs",
+		"zip": "let rec zip xs ys =\n\tmatch (xs, ys) with\n\t| ([], _) = []\n\t| (_, []) = []\n\t| (x:xs, y:ys) = (x, y) : zip xs ys"
+	},
+	"examples": {
+		"Merge Sort": "-- Merge sort implementation\nlet rec merge xs ys =\n\tmatch (xs, ys) with\n\t| ([], ys) = ys\n\t| (xs, []) = xs\n\t| (x:xs, y:ys) =\n\t\tif x <= y then x : merge xs (y:ys)\n\t\telse y : merge (x:xs) ys\n\nlet rec mergesort xs =\n\tmatch xs with\n\t| [] = []\n\t| [x] = [x]\n\t| _ =\n\t\tlet len = length xs in\n\t\tlet half = len / 2 in\n\t\tlet left = take half xs in\n\t\tlet right = drop half xs in\n\t\tmerge (mergesort left) (mergesort right)\n\nin mergesort [5, 2, 8, 1, 9]"
+	},
+	"metadata": {
+		"name": "Advanced Functional Patterns",
+		"author": "Example Author",
+		"version": "1.0",
+		"description": "Additional templates for advanced functional programming patterns"
+	}
+}

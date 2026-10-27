@@ -1,0 +1,112 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://hexkell.local/schemas/static_data.schema.json",
+	"title": "Hexkell static data",
+	"description": "Bundled content for the modern hex flow. See docs/STATIC_DATA_FORMAT.md. Deprecated 'templates' and 'exercises' live in data/legacy_playground.json.",
+	"type": "object",
+	"additionalProperties": false,
+	"required": ["chapters", "jobs", "examples"],
+	"properties": {
+		"chapters": {
+			"type": "object",
+			"description": "Map of chapter_id -> Chapter.",
+			"additionalProperties": { "$ref": "#/$defs/chapter" }
+		},
+		"jobs": {
+			"type": "object",
+			"description": "Map of job_id -> Job.",
+			"additionalProperties": { "$ref": "#/$defs/job" }
+		},
+		"examples": {
+			"type": "object",
+			"description": "Map of display name -> functional-language source string.",
+			"additionalProperties": { "type": "string" }
+		}
+	},
+	"$defs": {
+		"chapter": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["name", "description"],
+			"properties": {
+				"name": { "type": "string" },
+				"description": { "type": "string", "description": "BBCode." },
+				"examples": {
+					"type": "array",
+					"items": { "$ref": "#/$defs/exampleSlide" }
+				},
+				"jobs": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"unlocks_templates": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"exercises": {
+					"type": "array",
+					"description": "Legacy: exercise ids resolved against legacy_playground.json (Playground only).",
+					"items": { "type": "string" }
+				}
+			}
+		},
+		"exampleSlide": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["name"],
+			"properties": {
+				"name": { "type": "string" },
+				"blueprint": { "type": "string", "description": "Blueprint string; see docs/BLUEPRINT_FORMAT.md." },
+				"screenshot": { "type": "string", "description": "res:// path to a PNG/JPG." },
+				"caption": { "type": "string", "description": "BBCode." }
+			}
+		},
+		"job": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["name", "description", "renown_required", "renown_reward", "tests"],
+			"properties": {
+				"name": { "type": "string" },
+				"description": { "type": "string", "description": "BBCode." },
+				"renown_required": { "type": "integer", "minimum": 0 },
+				"renown_reward": { "type": "integer", "minimum": 0 },
+				"tests": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "$ref": "#/$defs/test" }
+				},
+				"unlocks_hexes": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^(hex_[a-z_]+|res://.*\\.gd)$",
+						"description": "Hex id (e.g. hex_add) resolved via StaticData.HEX_REGISTRY, or a raw res:// path."
+					}
+				},
+				"required_structures": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"forbidden_structures": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"variables": {
+					"type": "object",
+					"description": "Free identifiers injected into the answer's environment."
+				}
+			}
+		},
+		"test": {
+			"type": "object",
+			"additionalProperties": false,
+			"description": "A single test case. Use expected_type for an open-ended type check, expected for a value, or input+expected to call the answer function.",
+			"properties": {
+				"input": { "description": "Argument or array of positional arguments to the answer function." },
+				"args": { "description": "Alias for input." },
+				"expected": { "description": "Expected result value." },
+				"expected_type": { "type": "integer", "description": "Value.Type enum to assert." }
+			}
+		}
+	}
+}

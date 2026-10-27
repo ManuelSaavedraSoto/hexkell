@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://e2556aq60mkb"]
+
+[ext_resource type="Script" uid="uid://d0mcuuvidaq7s" path="res://scenes/gui/hex_editor/workspace_tab.gd" id="1_tab_script"]
+
+[node name="WorkspaceTab" type="Node2D" unique_id=957615574]
+script = ExtResource("1_tab_script")
+
+[node name="Levels" type="Node2D" parent="." unique_id=660231637]

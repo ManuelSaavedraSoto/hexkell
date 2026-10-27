@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://0ojgil6pkhy3"]
+
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="1_dioda"]
+[ext_resource type="Script" uid="uid://r2w8gvejhj2j" path="res://scenes/gui/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="FontFile" uid="uid://oy1y4dcdqs2r" path="res://assets/fonts/Mork Dungeon.ttf" id="3_myec3"]
+
+[node name="MainMenu" type="Control" unique_id=1110217627]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dioda")
+script = ExtResource("1_fsom3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1844386272]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.101960786, 0.12156863, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=812444037]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.421875
+anchor_top = 0.3148148
+anchor_right = 0.578125
+anchor_bottom = 0.6851852
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 200)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=619175286]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1349902603]
+layout_mode = 2
+theme_override_constants/margin_bottom = 30
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=930824835]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_myec3")
+theme_override_font_sizes/font_size = 62
+text = "Hexkell"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1457288319]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="StoryMode" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=842839592]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="Playground" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=623820941]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Classic Editor"
+
+[node name="Settings" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1713237725]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="Credits" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1713237726]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits"
+
+[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1744959285]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"

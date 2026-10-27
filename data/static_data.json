@@ -1,0 +1,475 @@
+{
+	"examples": {
+		"Factorial": "-- Tail-optimized factorial function using recursion.\nlet factorial x =\n\t let rec fact_helper n acc =\n\t\tmatch n with\n\t\t| 0 = acc\n\t\t| _ = fact_helper (n - 1) (acc * n)\n\tin fact_helper x 1\n\n in factorial 5",
+		"Fibonacci": "-- Tail-optimized Fibonacci function.\nlet fibonacci n =\n\tlet rec fib_helper n a b =\n\t\tmatch n with\n\t\t| 0 = a\n\t\t| _ = fib_helper (n - 1) (a + b) a\n\tin fib_helper n 0 1\n\n in fibonacci 10",
+		"List Sum": "-- Sum elements of a list using foldr.\nlet sum xs = foldr (+) 0 xs\n\nin sum [1..5] -- Returns 15",
+		"Map Double": "-- Map a function to double each element in a list.\nlet double = (*2)\nin map double [1..5]",
+		"Filter Even": "-- Filter even numbers from a list.\nlet is_even x = x % 2 == 0\nin filter is_even [1..10]",
+		"Quick Sort": "-- Quick sort implementation using pattern matching.\nlet rec quicksort xs =\n\tmatch xs with\n\t| [] = []\n\t| pivot : tail =\n\t\tlet less = filter (<= pivot) tail in\n\t\tlet greater = filter (> pivot) tail in\n\t\tquicksort less ++ [pivot] ++ quicksort greater\n\nin quicksort [3, 6, 8, 10, 1, 2, 1]"
+	},
+	"chapters": {
+		"chapter_0_tutorial": {
+			"name": "Chapter 0 — Tutorial: Placing a Hex",
+			"description": "[b]Welcome to Hexkell.[/b]\n\nYou build programs by placing hexagons, or [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img][b]hexes[/b] on a grid and wiring them together. The [b]Do[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex in the middle of every workspace is the program's main expression — whatever you wire into [b]Do[/b] is the answer the auditor checks.\n\nControls:\n\n[color=#ffd86b]•[/color] [img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/w.tres[/img][img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/a.tres[/img][img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/s.tres[/img][img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/d.tres[/img] to move the camera.\n[color=#ffd86b]•[/color] [img valign=center, height=1.5em]res://assets/icons/input/mouse/middle_mb.tres[/img][img valign=center, height=1em]res://assets/icons/buttons/plus_icon.tres[/img][img valign=center, height=2em]res://assets/icons/input/mouse/all_directions.tres[/img] pans the camera and [img valign=center, height=1.5em]res://assets/icons/input/mouse/scroll_wheel.tres[/img][b]wheel[/b] zooms.\n[color=#ffd86b]•[/color] [img valign=center, height=1.5em]res://assets/icons/input/mouse/left_mb.tres[/img] places, opens and drags; [img valign=center, height=1.5em]res://assets/icons/input/mouse/right_mb.tres[/img] cancels and closes.\n[color=#ffd86b]•[/color] [img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/r.tres[/img] rotates whatever is on your cursor.",
+			"examples": [
+				{
+					"name": "Numbers",
+					"blueprint": "hxk1:H4sIAAAAAAAAA12QwW6DMAyG38VnGISuTMoT7LTTblOFUnA7axkgJ3RMiHffD6WttBOxnXz+fiaqlV3kpnKRLBV5UaZ5mZqXd7O3RWmfDSXUcKhV+ihdiztonGSMg3LlRnGe7Eee5IdHVxqy+aMMEXyyEzUSeu9+q4vzAxq0K2lO6JNHDmBMdKOlRWKAq70LGNArj29dw1i7gE1C2oG4umDL1QzXlIPNsqB1tj7kkIFctXgZMi+R1fmQSRv5zLp8q61Z4drTuQH+LroJ7sp5hofUt9hf0sKAjpj2CgRa3h0ZzrQAeXTfvV9EO5WztPcfc2ENqy/kf0S3uDV7/y+4WYMzJBXrcRoF0farRdsPcSUWqLqegTshEqMY4nVmsG0+zH8OykdB1AEAAA==",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_numbers.png",
+					"caption": "An [b]Int[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex wired into [b]Do[/b] — the simplest valid program."
+				}
+			],
+			"unlocks_templates": [],
+			"jobs": [
+				"job_01_any_number"
+			],
+			"exercises": [
+				"exercise_01",
+				"exercise_02",
+				"exercise_07"
+			]
+		},
+		"chapter_1_integer_operators": {
+			"name": "Chapter 1 — Integer Operators",
+			"description": "Operator [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hexes combine wired inputs into a new value.\n\n[color=#ffd86b]•[/color] [code]+[/code] takes two wired inputs and emits their sum — its siblings ([code]- × ÷ %[/code]) unlock as you finish this chapter's work.\n[color=#ffd86b]•[/color] Wire two [b]Int[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hexes into the operator's input sides, then wire the operator into [b]Do[/b].\n[color=#ffd86b]•[/color] Operators chain: the output of one can feed an input of the next.\n[color=#ffd86b]•[/color] Rotate a [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex ([img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/r.tres[/img]) to bring its input sides toward your wiring.\n\n[color=#9fcfff]Tip:[/color] when the whole chain is made of literals and operators, the [b]Do[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex previews the computed value right on its body.",
+			"examples": [
+				{
+					"name": "Binary ops",
+					"blueprint": "hxk1:H4sIAAAAAAAAA7WSO2+DMBCA/8vNpGBDEomxU6d26VZFyIFLcqoDyDYpUcR/75lAyUPpUKkT8vn4/N3jBLlB5bDIlIMUZCQXs2gxE8t3MU/lMk2WEECBNjdUO6pKzuHAhlrXGMxUS0pD+hEF0WqKUgFpNB2tYz6kJyjI1lods4PSDQdAzKELYIctWmacYKSJYCYYl2tl+QKeqVTm+Fa/YMtPe7gIwFRM7X3iAM52nGrQpmFoTR72P6MNmZ6VFRcQVjUa5SpjQ2XI7fboKA9VUWSc8rQtGD2Kdl0wyci+tNGFHV6ZNnjIv3hociyibUilwy0a/82G4L0LDM2Kb6SuOnRtFV9aJf9qJWTXsQfl42J8UskGsObb2jCCQ1qtkZ3Btxpbta+1F60Mban8WZ0DGtv78mi/yAwLkaPWt6vhs5EdTb9j2BJXlvQSZd24PiXhE0+baRuuCPnQuPOdH6bv4z2YOyonshjJ8posH5Ljh+ToPKtbZ3FJjn5x9iV3q+4bfbgtfKkDAAA=",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_binary_ops.png",
+					"caption": "Two [b]Int[/b] hexes feeding the NW + SW sides of a [b]+[/b] hex; the [b]+[/b]'s east output runs into [b]Do[/b]."
+				}
+			],
+			"unlocks_templates": [],
+			"jobs": [
+				"job_02_add_crates"
+			],
+			"exercises": []
+		},
+		"chapter_2_boolean_literals": {
+			"name": "Chapter 2 — Boolean Literals",
+			"description": "Not every answer is a number — some jobs ask for a verdict.\n\n[color=#ffd86b]•[/color] [b]true[/b] and [b]false[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hexes are output-only literals, just like [b]Int[/b].\n[color=#ffd86b]•[/color] Wire one straight into [b]Do[/b] when the job expects a boolean.\n\n[color=#9fcfff]Tip:[/color] the slide shows the boolean [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hexes as they appear in the editor.",
+			"examples": [
+				{
+					"name": "Booleans",
+					"blueprint": "hxk1:H4sIAAAAAAAAA0WQwU7DMAyG38XnlqQFhpQn4LQTNzRFaWI2iyipnGwUVX133E5lpyi/7e//7Rk8o6sYrKtgoNf9odWHtnv76F5Nr83zCzQQsHimsVJO0iPCF031ymjdRC6C+dSNPj1UCmD041uq8MHMEKiM0f3am4tXEaCyPEsDF5ywCGWGndd2G9BHV6QA7zgdc0AxXtFdA5yFuaURn3s2aWMsRqnCXm2DWJSQbZLJoiJVZBeLGnKO6FJRq7uVhqdzEPAeclnEl/y+6DclcYRBAo9MqYoU3YBx1e4g6y9uFLZUMtOZ0v85bshlyyiBf4i3FU/LHx9lEx5xAQAA",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_booleans.png",
+					"caption": "[b]true[/b] / [b]false[/b] hexes; the comparison hexes ([code]==[/code], [code]<[/code], [code]>=[/code], [code]&&[/code]) take two inputs the same way [b]+[/b] does."
+				}
+			],
+			"unlocks_templates": [],
+			"jobs": [
+				"job_03_return_true"
+			],
+			"exercises": []
+		},
+		"chapter_3_boolean_operators": {
+			"name": "Chapter 3 — Boolean Operators",
+			"description": "Boolean operator [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hexes ask questions about wired values.\n\n[color=#ffd86b]•[/color] Comparisons — [code]== != < >=[/code] — take two numbers and emit [code]true[/code] or [code]false[/code].\n[color=#ffd86b]•[/color] [code]&&[/code] and [code]||[/code] combine two booleans; [code]![/code] flips one.\n[color=#ffd86b]•[/color] They wire exactly like the arithmetic operators: inputs in, verdict out — wire the comparison itself into [b]Do[/b] when a job asks for a judgement.",
+			"examples": [
+				{
+					"name": "Comparisons",
+					"blueprint": "hxk1:H4sIAAAAAAAAA62SwW6DMAyG3yVnaCB0rcZxp522y25VhVJwu2hZgpLQUVW8+5y0DDFYt8MOCMV2/v9z7DMpDXAHVcEdyQlL2CpOVnG6fknvcnafp2sSkQpsaUTthFZYg4G9aF1joOCt4JLkm2SRRPhth4yoSO6jXwHr0IXkZ1IJW0t+Ko5cNhggzuCvi8grtGBR60x6VYb3YxZkS8ktJsmDUNycnutHaBHDm6TexGhUD3SZP15osdyAzSm1pqRBACxFl0JpbIjqGgx32lgq9UGUXFJtCkwvDhVK97hdF42BkhEPcjyh2pWFjVmWf2aRwiGMtHSntQSuLN3jCX7B8b3G6Q2e7P94/JTmcNBblP1avAmFrmSHg62NUA5Dku8AWQm+LbT8vZaeTRtxEGq0N0cwNkCGeX4Ic92FEqSc2YpL16AQ83oFWuFCiwFJ1Q2eNj6zDKU4bRQPr4qHxl3y/UD9q06dsmH/5p2+zyL7oZZNqdgNquwmVTqhSgandEyVTt5qebM2+aE0GzcwjG2+gV6q23afYOKlL2AEAAA=",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_comparisons.png",
+					"caption": "[i]Screenshot pending — wire two values through a comparison hex and capture it with the top-bar Copy BP button.[/i]"
+				}
+			],
+			"unlocks_templates": [],
+			"jobs": [
+				"job_04_quality_check"
+			],
+			"exercises": []
+		},
+		"chapter_4_identifiers": {
+			"name": "Chapter 4 — Identifiers & Names",
+			"description": "Programs get powerful when values have names. First, learn to read the names a job hands you.\n\n[color=#ffd86b]•[/color] The [b]id[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex references a name in scope. To the wiring it's just another value [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex — like an [b]Int[/b] whose number someone else fills in.\n[color=#ffd86b]•[/color] [b]Reserved identifiers[/b]: jobs hand you parameters as [code]white[/code] / [code]black[/code]. They appear in the [b]id[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex's picker only while that job is selected, and the client sets their values at submit time — that's why hard-coding the number fails.\n[color=#ffd86b]•[/color] Once you're comfortable reading identifiers, [b]Chapter 6 — Bindings[/b] shows how to name your own values with [b]let[/b], [b]let rec[/b], and [b]def[/b].",
+			"examples": [
+				{
+					"name": "Identifiers",
+					"blueprint": "hxk1:H4sIAAAAAAAAA5WSTU/DMAyG/0vOLU0zmFCOnDjBhRuaqqz1hkXWVk46Ok3977zd9/iQ4NTEcZ48rr1VpZCLVBUuKquMNtNUT1NjXnJj9Z3V9ypRFYVSuI3c1MhBYMF97IQK17Pzyr7qRM/OUa6U1edtiOAru1UVh9a7TbF2vqMRNCTqjXoKIGzVkZUnaQ5Y6V3AgXrg2snmuX2kHg+P6DxR0oC5s8Fm74ZUoWCzLEiZ7S5TyEAv6gb6WdOSuNhIyJxwfFtR5DJbdb5Ays2yAvqoOQzJWUZfy0DiCbiDiLkU0X8U8Rxh4kPGdaQlyfgtDsHvMurwr8yVlUlS86vV5NLK/NuqojrygkexcVkILX7Qap2nGNHqukJf7HQY4MPlcT7eEcdqDvdWUCBC3s0J7lAsdp1shJdcn2ZnTRKODf1gOcxESd5/nY4xG2Ikyt5i1TNqm+yer9sunoBoOGgL1ETYdHF/Nl4fZsMniinePvYCAAA=",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_identifiers.png",
+					"caption": "An [b]id[/b] hex set to [b]white[/b] — the job exposes [code]white[/code] / [code]black[/code] as reserved parameters the auditor injects values into."
+				}
+			],
+			"unlocks_templates": [],
+			"jobs": [
+				"job_05_echo_white",
+				"job_06_double_white",
+				"job_07_compare_white_black"
+			],
+			"exercises": []
+		},
+		"chapter_5_conditionals": {
+			"name": "Chapter 5 — Conditionals",
+			"description": "Choose between two values with the [b]if[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex.\n\n[color=#ffd86b]•[/color] [b]if[/b] takes its [b]condition[/b] on the outer face and answers with one of two values.\n[color=#ffd86b]•[/color] Wire a boolean (often a comparison from Chapter 3) into the condition side.\n[color=#ffd86b]•[/color] Press [img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/q.tres[/img] over it to descend and wire the [b]then[/b] / [b]else[/b] bodies inside — a move you'll reuse for [b]let[/b] and [b]match[/b].\n\nOnce finished with the inner body, you can press [img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/e.tres[/img] to ascend.",
+			"examples": [
+				{
+					"name": "if",
+					"blueprint": "hxk1:H4sIAAAAAAAAA7WUTY+bMBCG/4vPUGwTshLHnnpqL72tVsiBSWqtZaOxSVlF/PcOBBLQBnarqifw1zOvZ97xhZUIKkBVqMByJrncx3wfy91PIXOR5VyyiFXgS9R10M7SHpo46jY0CIVqtTIsf+YRf7nP6orl/D70gfgsv7BK+9qot+KsTEMTTLAuYr+gBU+IC5tgsRxopVGeFtg3aL+7CihqzxX0sRaw583jyRWSXCWlEUNH0oZLZRG7XpG2Ifg8STyWyXAQfELkwtJJnxgdAJXxibYBToD9txgnC9r25VQR/nbj8aa866K7Kh7F66p2c1Xiv6oSXUcyXrWlsMzAGQxt+q1xTGIJxizTScIFnQAKgoNSaHXoOS99UeqG/p9ltKORq4HkH0kS0KAJ17Ud1bVPxHtyLKIZWU7kbEmWq+S0JxN7ljv+ydyVzgZ0JtHH95lalI00Lur2VVuFbz9qqt9Yu2weX34yPl0IVXBIVXQnXSqTOPxAidgy0H4uIv1bAx2cM6CsT4YMf5QRuSXk6Z/66yYkYPNQR++McnqPRhMfyNc1kvlpyqgDGTpnVNehQA71SdvbW3UG9FOPbXm+r3r6wJoL02cb1nxaNf34DoxkPpHTJXm9nfbr7SQXnZo9FC020NlWp/I7OZ3IfE7mUbpKFtdO/QPTDCm9dwYAAA==",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_if.png",
+					"caption": "[b]if[/b] takes its condition on the outer face. Press [b]Q[/b] over it to descend and wire the [b]then[/b] / [b]else[/b] bodies inside — a shape you'll meet again in [b]let[/b] and [b]match[/b]."
+				}
+			],
+			"unlocks_templates": [
+				"if"
+			],
+			"jobs": [
+				"job_08_pick_bigger"
+			],
+			"exercises": []
+		},
+		"chapter_6_lambdas": {
+			"name": "Chapter 6 — Lambdas",
+			"description": "[b]Lambdas[/b] ([code]λ[/code] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex) are anonymous functions written [code]\\p1 p2 -> body[/code]. The [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex has 1–5 wired inputs (one per parameter); leaving any of them unwired produces a [b]partial application[/b] — a function value the next hex can apply further.\n\nThis chapter's job asks you to build a small one-parameter function — a [b]+1 machine[/b] the shop can apply to many crates.",
+			"examples": [
+				{
+					"name": "Lambdas",
+					"screenshot": "res://assets/screenshots/chapters/ch1_lambdas.png",
+					"caption": "A [b]λ[/b] hex with one wired input is a one-parameter function. With zero inputs wired, the hex's output IS the function value itself — ready to be applied elsewhere."
+				}
+			],
+			"unlocks_templates": [
+				"lambda"
+			],
+			"jobs": [
+				"job_09_increment_fn"
+			],
+			"exercises": []
+		},
+		"chapter_7_bindings": {
+			"name": "Chapter 7 — Bindings",
+			"description": "Now that you can read names and stop with [b]if[/b], it's time to make your own bindings.\n\n[color=#ffd86b]•[/color] [b]let[/b] binds a wired value to a name; press [img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/q.tres[/img]over it to descend into its body level.\n[color=#ffd86b]•[/color] [b]let rec[/b]'s bound name is also in scope inside its own value — that's what makes recursion possible. Always give it a base case (an [b]if[/b] that stops recursing) or it loops forever.\n[color=#ffd86b]•[/color] [b]def[/b] floats at level 0 and broadcasts its name wirelessly into scope; multiple defs build a small library.",
+			"examples": [
+				{
+					"name": "let",
+					"blueprint": "hxk1:H4sIAAAAAAAAA6VUUW+bMBj8L352hm2SauJxT3vaXvZWVciFL9SaZyPbyZii/PeeIRWwJtXaSZFiPo678/ngxJpAOlFb68QqpoS62wj8Pv+QqhJlJXaMs5ZiE0yfjHfAYPBEA0VW3Z+YHoy2WEkuHjhrrI6Ys680fPMtAWlaVgn8OUeBVSe2N0M6BKrzXF4j2kiubjIpzoJPejIC2skWYIFiVRQxNMX4IMUCzLXDk7GwJlHQNhamJZfM3lCYlnWgfQ3cp64FfwQvZYu9tpQSLLqWBsicz3y5T7lw98U4Hf587+Hy4rBcOtz9o0Pfw2DyAV59Zxptiw76r5ytjAhe3oxp+xETc0wuUZczQkKX4ZWUjtoeaEwHNn4iK9BbOpIF6LcJl1NtyNr1+YrxeJF+7gPSosHA2Xa9NTlD5AtEZCHj+gPW9yXf4gq5YYN7mCZcHNJ0T6GKme61tlxqq1l7RaxuEm9vEqux/X8Tl+viLCBihiy0J8h17TJrQ/0DB9t4l4K3BVr93raLN97q3f+9i+8vmWlePj+Xuj3iZh/AgJHVj6hermCqadC/ept9+mA64/JXZcc3+WCPFOJoWM4tfTg/A7tVP8kFBQAA",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_let.png",
+					"caption": "[b]let[/b] binds a wired value to a name. Press [b]Q[/b] over the let hex to descend into its body level."
+				},
+				{
+					"name": "let rec",
+					"blueprint": "hxk1:H4sIAAAAAAAAA5WSTW7CMBBG7zLr0MQhQign6KordhWKjDPAqMaJbNOmQrl7vySg0j/aSl7YnvHz83hOZDzryHWlI5WUZ/lilmEsVyovs0WZLymhmoPx0kZpHHKwseeOA5WPJ9KdaIvZTCUztU7IWB0QoXvuHpqakSs1lVlCvol6AuQJTTikeQ5lmgZv0vEghxToyuFkSE3jom9sajlWnk2FyN2uBjGAxFSeqNWIRa7E1dzhlr5P3o1uCqlrofk/hQ46mv03OtpLfB3f12poeTeUiCqkVLT+5PazWn6tVvxRzQru0zakUrOLshX20xSV2/5eOdX38BFz+d8n7GO2sUduvbiILas3DHW6/AZ3+tDaQbrxshM39ECRZMA8sw+jPIr8Iv7cKIat/dgy2fRBkGQ/tgh3gnfORxXXHuOYU2DVtAzcFu9jLI5xiincNhT1K1mNHmewuoCLa7C6Ac4H8Lp/A2JWu9EbAwAA",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_let_rec.png",
+					"caption": "[b]let rec[/b]'s bound name is also in scope inside its own value — needed for self-recursion (e.g. factorial)."
+				},
+				{
+					"name": "Definitions",
+					"blueprint": "hxk1:H4sIAAAAAAAAA02QzWrDMBCE32XPdv1DaIOeoKeecgtBKNY6XSpks1JSF+N379huaUFgeXZn9lvN1Cm7zN66TIbaun0ua5zjqWlNfTTtCxXkOXUqY5YhogfCO0+cyJxncpO4gFtd1JeCuuASdHrl6W3wjE7xZGp8YmQlM1MvU74r21Vv/oLg/ZAIjQI/OMD4KbpXloJ0yG4ffihoR0En6qaqknbVNpZThTQbMTdV3RCzDqHy3EuU1WtRfLp5JCeE8criVPIXmXal5JilF1Y7usA5AzB6njb20eFf4wpDFn5Ll2UBsHS/z/GDfg13HlVihhTcFWsYPF2/IUEaVG4Cx7k8FGWDgAdr2rZq/q/7DbI+FtqSAQAA",
+					"screenshot": "res://assets/screenshots/chapters/tutorial_definitions.png",
+					"caption": "[b]def[/b] floats at level 0 and broadcasts its name wirelessly into scope. Multiple [b]def[/b]s with the same name become multi-equation pattern matching."
+				}
+			],
+			"unlocks_templates": [
+				"let",
+				"let_rec"
+			],
+			"jobs": [
+				"job_10_let_binding"
+			],
+			"exercises": []
+		},
+		"chapter_8_structures": {
+			"name": "Chapter 8 — Structures",
+			"description": "[b]Tuples[/b] are fixed-length \"frozen\" groups: [code](1, 2)[/code], [code](true, 0, 99)[/code]. You can't iterate them; you destructure with pattern matching to pull the parts out.\n\n[b]Lists[/b] are variable-length sequences: [code][10, 20, 30][/code], [code][1..5][/code]. The cons operator [code]:[/code] prepends an element; [code]++[/code] concatenates two lists.\n\n[b]Pattern matching[/b] on a list usually splits head + tail: [code]match xs with | [] = … | h:t = …[/code]. Pair it with recursion to walk the whole list.\n\nThe final chapter job asks you to rebuild [code]len[/code] or [code]map[/code] using pattern matching + recursion.",
+			"examples": [
+				{
+					"name": "Tuples",
+					"screenshot": "res://assets/screenshots/chapters/ch1_tuples.png",
+					"caption": "A [b]tuple[/b] hex — press [img valign=center, height=1.5em]res://assets/icons/input/keyboard/letters/q.tres[/img] to descend and wire its elements; emits [code](a, b)[/code]."
+				},
+				{
+					"name": "Lists",
+					"screenshot": "res://assets/screenshots/chapters/ch1_lists.png",
+					"caption": "[b]list[/b] hex — elements live one level down; a full block can be descended into again for more. Nothing wired emits [code][][/code]."
+				},
+				{
+					"name": ": and ++",
+					"screenshot": "res://assets/screenshots/chapters/ch1_cons_concat.png",
+					"caption": "[b]:[/b] (cons) prepends a head; [b]++[/b] concatenates two lists end-to-end."
+				},
+				{
+					"name": "Pattern match",
+					"screenshot": "res://assets/screenshots/chapters/ch1_pattern_match.png",
+					"caption": "[b]match[/b] hex with two branches — patterns [code][][/code] and [code]h:t[/code]. Press [b]Q[/b] to descend and wire each branch's body."
+				},
+				{
+					"name": "Recursion on lists",
+					"screenshot": "res://assets/screenshots/chapters/ch1_list_recursion.png",
+					"caption": "A [b]def[/b] for [b]length[/b]: pattern-match on the input, recurse on the tail."
+				}
+			],
+			"unlocks_templates": [
+				"match",
+				"case"
+			],
+			"jobs": [
+				"job_11_sum_list"
+			],
+			"exercises": [
+				"exercise_03",
+				"exercise_04",
+				"exercise_05",
+				"exercise_06",
+				"exercise_08",
+				"exercise_09"
+			]
+		}
+	},
+	"jobs": {
+		"job_01_any_number": {
+			"name": "Pick a number",
+			"description": "Wire an [b]Int[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex into the [b]Do[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex. The shop owner doesn't care which number — they just want to see the press run an end-to-end job.",
+			"renown_required": 0,
+			"renown_reward": 2,
+			"tests": [
+				{
+					"expected_type": 0
+				}
+			],
+			"unlocks_hexes": [
+				"hex_add"
+			]
+		},
+		"job_02_add_crates": {
+			"name": "Add up the crates",
+			"description": "Two crates arrive: one holds [b]5[/b] parts, the other [b]3[/b]. Wire two [b]Int[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hexes into a [b]+[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex and run the total. The auditor wants to see the press do the sum — a pre-totalled [b]8[/b] gets rejected.",
+			"renown_required": 2,
+			"renown_reward": 3,
+			"tests": [
+				{
+					"expected": 8
+				}
+			],
+			"required_structures": [
+				"binary_op"
+			],
+			"unlocks_hexes": [
+				"hex_sub",
+				"hex_mul",
+				"hex_neg",
+				"hex_div",
+				"hex_mod",
+				"hex_true",
+				"hex_false"
+			]
+		},
+		"job_03_return_true": {
+			"name": "Print the all-clear",
+			"description": "The shop floor wants a literal [b]true[/b] sign in the window. Place a [b]true[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex and wire it into [b]Do[/b]. Nothing else needed.",
+			"renown_required": 5,
+			"renown_reward": 3,
+			"tests": [
+				{
+					"expected": true
+				}
+			],
+			"unlocks_hexes": [
+				"hex_eq",
+				"hex_lt",
+				"hex_neq",
+				"hex_gte",
+				"hex_and",
+				"hex_or",
+				"hex_not"
+			]
+		},
+		"job_04_quality_check": {
+			"name": "Pass the quality check",
+			"description": "Quality control asks a simple question: is a [b]3[/b]-part crate lighter than a [b]5[/b]-part one? Wire the two numbers through a comparison [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex ([code]<[/code]) and let the press answer. A bare [b]true[/b] sign gets rejected — the auditor wants the comparison actually performed.",
+			"renown_required": 8,
+			"renown_reward": 4,
+			"tests": [
+				{
+					"expected": true
+				}
+			],
+			"required_structures": [
+				"binary_op"
+			],
+			"forbidden_structures": [
+				"bool"
+			],
+			"unlocks_hexes": [
+				"hex_ident_ref"
+			]
+		},
+		"job_05_echo_white": {
+			"name": "Echo the shipment",
+			"description": "Today's job comes with a parameter: the client hands you [b]white[/b], an identifier already holding the crate count. Place an [b]id[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex, set it to [b]white[/b] in its config, and wire it straight into [b]Do[/b] — an identifier IS a value hex, no math needed. Typing the number yourself won't pass: the count changes with every shipment.",
+			"renown_required": 12,
+			"renown_reward": 4,
+			"variables": {
+				"white": 7
+			},
+			"tests": [
+				{
+					"expected": 7
+				}
+			],
+			"required_structures": [
+				"variable"
+			],
+			"forbidden_structures": [
+				"int"
+			],
+			"unlocks_hexes": []
+		},
+		"job_06_double_white": {
+			"name": "Double the shipment",
+			"description": "The client hands you one parameter — [b]white[/b] — and wants its double. Wire an [b]Int[/b] literal, a [b]×[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex, and an [b]id[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex set to [b]white[/b]. The identifier picker will only enable [b]white[/b] while this job is selected.",
+			"renown_required": 16,
+			"renown_reward": 5,
+			"variables": {
+				"white": 7
+			},
+			"tests": [
+				{
+					"expected": 14
+				}
+			],
+			"required_structures": [
+				"variable",
+				"binary_op"
+			],
+			"unlocks_hexes": [
+				"hex_let"
+			]
+		},
+		"job_07_compare_white_black": {
+			"name": "Is white smaller than black?",
+			"description": "Two parameters today: [b]white[/b] and [b]black[/b]. Return the truthfulness of [b]white[/b] being less than [b]black[/b] — i.e. wire a comparison [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex with two [b]id[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hexes feeding it. No fudging with a bare [b]true[/b] / [b]false[/b] literal: the auditor will reject programs that don't actually do the comparison.",
+			"renown_required": 21,
+			"renown_reward": 5,
+			"variables": {
+				"white": 3,
+				"black": 5
+			},
+			"tests": [
+				{
+					"expected": true
+				}
+			],
+			"required_structures": [
+				"binary_op",
+				"variable"
+			],
+			"forbidden_structures": [
+				"bool"
+			],
+			"unlocks_hexes": [
+				"hex_if",
+				"hex_apply",
+				"hex_lambda"
+			]
+		},
+		"job_08_pick_bigger": {
+			"name": "Pick the bigger of two crates",
+			"description": "Two parameters: [b]white[/b] and [b]black[/b]. Return whichever is larger. An [b]if[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex with a comparison from the last job is the most direct route — and the auditor checks that one was used.",
+			"renown_required": 26,
+			"renown_reward": 8,
+			"variables": {
+				"white": 11,
+				"black": 4
+			},
+			"tests": [
+				{
+					"expected": 11
+				}
+			],
+			"required_structures": [
+				"if"
+			],
+			"unlocks_hexes": [
+				"hex_tuple",
+				"hex_list_literal",
+				"hex_range",
+				"hex_cons",
+				"hex_concat"
+			]
+		},
+		"job_09_increment_fn": {
+			"name": "Build a +1 machine",
+			"description": "Return a function (a [b]λ[/b] [img valign=center, height=1em]res://assets/icons/hexagons/hollow_hex.tres[/img]hex with one parameter) that adds 1 to its input. The shop will apply it to several crates and check each one.",
+			"renown_required": 34,
+			"renown_reward": 10,
+			"tests": [
+				{
+					"input": 5,
+					"expected": 6
+				},
+				{
+					"input": -1,
+					"expected": 0
+				},
+				{
+					"input": 41,
+					"expected": 42
+				}
+			],
+			"required_structures": [
+				"lambda"
+			],
+			"unlocks_hexes": [
+				"hex_match",
+				"hex_let_rec",
+				"hex_definition",
+				"hex_compose"
+			]
+		},
+		"job_10_let_binding": {
+			"name": "Reuse the offset",
+			"description": "Bind an intermediate value once and reuse it: compute [code](white + 1)²[/code] by using a [b]let[/b] to name [code]white + 1[/code], then multiplying that name by itself. The auditor checks you used a [b]let[/b].",
+			"renown_required": 44,
+			"renown_reward": 12,
+			"variables": {
+				"white": 6
+			},
+			"tests": [
+				{
+					"expected": 49
+				}
+			],
+			"required_structures": [
+				"let"
+			]
+		},
+		"job_11_sum_list": {
+			"name": "Total the manifest",
+			"description": "Build a function that returns the sum of a list. The standard library exposes [code]foldr[/code], which collapses a list with a binary operator and a seed value.",
+			"renown_required": 56,
+			"renown_reward": 20,
+			"tests": [
+				{
+					"input": [
+						[
+							1,
+							2,
+							3,
+							4
+						]
+					],
+					"expected": 10
+				},
+				{
+					"input": [
+						[]
+					],
+					"expected": 0
+				},
+				{
+					"input": [
+						[
+							5,
+							5,
+							5
+						]
+					],
+					"expected": 15
+				}
+			],
+			"required_structures": [
+				"lambda"
+			]
+		}
+	}
+}

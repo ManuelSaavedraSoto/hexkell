@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://c6r6f0olhh0kf"]
+
+[ext_resource type="Script" uid="uid://cdkc06cv6q384" path="res://scenes/gui/common/chapter_intro_dialog.gd" id="1_intro"]
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="2_theme"]
+[ext_resource type="Shader" uid="uid://xt1wdslo8lbh" path="res://assets/shaders/blur.gdshader" id="3_kvjdy"]
+[ext_resource type="Texture2D" uid="uid://bfn25pmrb21bq" path="res://assets/icons/buttons/cross.tres" id="4_2wu2y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2wu2y"]
+shader = ExtResource("3_kvjdy")
+shader_parameter/blur_amount = 1.5
+
+[node name="ChapterIntroDialog" type="Control" unique_id=1562323271]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_theme")
+script = ExtResource("1_intro")
+metadata/_edit_use_anchors_ = true
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=425395610]
+material = SubResource("ShaderMaterial_2wu2y")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0516067
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.45)
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1044953738]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=775264864]
+custom_minimum_size = Vector2(900, 600)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1175634027]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin" unique_id=1149244300]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=738592693]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/HeaderBar" unique_id=687845775]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.4, 1)
+theme_override_font_sizes/font_size = 20
+text = "Chapter title"
+
+[node name="CloseButton" type="TextureButton" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/HeaderBar" unique_id=930167384]
+unique_name_in_owner = true
+modulate = Color(0.48235294, 0.54901963, 0.57254905, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("4_2wu2y")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=856479825]
+layout_mode = 2
+
+[node name="Body" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=58063774]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="DescriptionColumn" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=1534486908]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/DescriptionColumn" unique_id=2036576991]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+selection_enabled = true
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=945948882]
+layout_mode = 2
+
+[node name="ScreenshotColumn" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=849123659]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="CarouselBox" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/ScreenshotColumn" unique_id=637754520]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ScreenshotView" type="Control" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/ScreenshotColumn/CarouselBox" unique_id=1153363119]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NavigationBox" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/ScreenshotColumn/CarouselBox" unique_id=426204443]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/ScreenshotColumn/CarouselBox/NavigationBox" unique_id=1700469852]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "◀ Prev"
+
+[node name="IndicatorLabel" type="Label" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/ScreenshotColumn/CarouselBox/NavigationBox" unique_id=1696258123]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "1 / 1"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/ScreenshotColumn/CarouselBox/NavigationBox" unique_id=1608132490]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Next ▶"

@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://dqyecd2xcdgvs"]
+
+[ext_resource type="Script" uid="uid://r8ietbpmcg7b" path="res://scenes/gui/blueprint_library/blueprint_library_dialog.gd" id="1_lib"]
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" uid="uid://bfn25pmrb21bq" path="res://assets/icons/buttons/cross.tres" id="3_ja36p"]
+[ext_resource type="Texture2D" uid="uid://sdn3hplww87n" path="res://assets/icons/buttons/import.tres" id="4_miqye"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_miqye"]
+action = &"sys_open_library"
+
+[sub_resource type="Shortcut" id="Shortcut_walod"]
+events = [SubResource("InputEventAction_miqye")]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_miqye"]
+load_path = "res://.godot/imported/ui_sprite_sheet.svg-6e79fe006d0edeca28316e7ec9554ca2.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walod"]
+atlas = SubResource("CompressedTexture2D_miqye")
+region = Rect2(40, 424, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_np8kj"]
+texture = SubResource("AtlasTexture_walod")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+modulate_color = Color(0.16470589, 0.24705882, 0.27450982, 1)
+
+[node name="BlueprintLibraryDialog" type="Control" unique_id=2026881464]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_theme")
+script = ExtResource("1_lib")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=1770452169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.45)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1568326640]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1220938518]
+custom_minimum_size = Vector2(880, 540)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1376436305]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin" unique_id=1053540919]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=1811074054]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/HeaderBar" unique_id=1629231579]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.4, 1)
+theme_override_font_sizes/font_size = 20
+text = "Blueprint Library"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/HeaderBar" unique_id=1784501018]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.78431374, 0.7882353, 0.79607844, 1)
+theme_override_colors/icon_hover_color = Color(0.78431374, 0.7882353, 0.79607844, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.78431374, 0.7882353, 0.79607844, 1)
+shortcut = SubResource("Shortcut_walod")
+icon = ExtResource("3_ja36p")
+flat = true
+icon_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=1133299556]
+layout_mode = 2
+
+[node name="Body" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer" unique_id=1563162883]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="LeftColumn" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=1631034094]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="Actions" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/LeftColumn" unique_id=1414406223]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="CaptureButton" type="Button" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/LeftColumn/Actions" unique_id=1967217716]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Save the active tab's level 0 as a blueprint."
+text = "+ Capture current tab"
+
+[node name="ImportButton" type="Button" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/LeftColumn/Actions" unique_id=459495909]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 43)
+layout_mode = 2
+tooltip_text = "Import.
+Paste a blueprint string (starts with hxk1:)."
+theme_override_colors/icon_normal_color = Color(0.78431374, 0.7882353, 0.79607844, 1)
+theme_override_colors/icon_hover_color = Color(0.80784315, 0.6745098, 0.627451, 1)
+icon = ExtResource("4_miqye")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/LeftColumn" unique_id=350871084]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ListBox" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/LeftColumn/ScrollContainer" unique_id=1697897253]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=1889157252]
+layout_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body" unique_id=42896760]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="PreviewHeader" type="Label" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/RightColumn" unique_id=1021939623]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Preview"
+
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/RightColumn" unique_id=935615668]
+layout_mode = 2
+
+[node name="PreviewPanel" type="PanelContainer" parent="CenterContainer/PanelContainer/Margin/VBoxContainer/Body/RightColumn" unique_id=692689716]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_np8kj")

@@ -1,0 +1,331 @@
+[gd_scene format=3 uid="uid://ce6li67phjy3"]
+
+[ext_resource type="Script" uid="uid://blq8x2156rpxb" path="res://src/classes/hex_nodes/hex_node.gd" id="1_tmixu"]
+[ext_resource type="Texture2D" uid="uid://byl2n7gsmquts" path="res://assets/particles/circle_02.png" id="2_8weyj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tmixu"]
+height = 61.53042
+
+[sub_resource type="Curve" id="Curve_50ppt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_smsw0"]
+curve = SubResource("Curve_50ppt")
+
+[sub_resource type="Curve" id="Curve_p3e1f"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.22950822, 0.18341827), 3.52488, 3.52488, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2rxyr"]
+curve = SubResource("Curve_p3e1f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wohft"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_2rxyr")
+alpha_curve = SubResource("CurveTexture_smsw0")
+
+[node name="HexNode" type="Node2D" unique_id=1128269317]
+script = ExtResource("1_tmixu")
+
+[node name="HexBodyArea" type="Area2D" parent="." unique_id=1388689507]
+unique_name_in_owner = true
+
+[node name="HexPolygon" type="Polygon2D" parent="HexBodyArea" unique_id=650483794]
+color = Color(0.2, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, -56, 48.497, -28, 48.497, 28, 0, 56, -48.497, 28, -48.497, -28)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HexBodyArea" unique_id=658115676]
+polygon = PackedVector2Array(0, -56, 48.497, -28, 48.497, 28, 0, 56, -48.497, 28, -48.497, -28)
+
+[node name="EdgeTopRight" type="Area2D" parent="." unique_id=980243373]
+unique_name_in_owner = true
+
+[node name="Polygon2D" type="Polygon2D" parent="EdgeTopRight" unique_id=372789439]
+color = Color(0.5, 0.5, 0.5, 1)
+polygon = PackedVector2Array(0, -64, 55.426, -32, 48.497, -28, 0, -56)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EdgeTopRight" unique_id=1922726123]
+polygon = PackedVector2Array(0, -64, 55.426, -32, 48.497, -28, 0, -56)
+
+[node name="Anchor" type="Marker2D" parent="EdgeTopRight" unique_id=1569995812]
+position = Vector2(27.713, -48)
+
+[node name="Area2D" type="Area2D" parent="EdgeTopRight/Anchor" unique_id=1919427926]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeTopRight/Anchor/Area2D" unique_id=82527376]
+rotation = 2.0943952
+shape = SubResource("CapsuleShape2D_tmixu")
+
+[node name="Label" type="Label" parent="EdgeTopRight/Anchor" unique_id=472212671]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.712997
+offset_top = 6.0
+offset_right = 5.2870026
+offset_bottom = 24.0
+grow_horizontal = 2
+rotation = 0.5235988
+pivot_offset = Vector2(9, 0)
+theme_override_font_sizes/font_size = 12
+text = "NE"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EdgeTopRight/Anchor" unique_id=1664767446]
+modulate = Color(1, 0.9647059, 0.79607844, 1)
+texture_filter = 1
+emitting = false
+amount = 1
+texture = ExtResource("2_8weyj")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_wohft")
+
+[node name="EdgeRight" type="Area2D" parent="." unique_id=1581071144]
+unique_name_in_owner = true
+
+[node name="Polygon2D" type="Polygon2D" parent="EdgeRight" unique_id=1855315366]
+color = Color(0.6, 0.6, 0.6, 1)
+polygon = PackedVector2Array(55.426, -32, 55.426, 32, 48.497, 28, 48.497, -28)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EdgeRight" unique_id=683415798]
+polygon = PackedVector2Array(55.426, -32, 55.426, 32, 48.497, 28, 48.497, -28)
+
+[node name="Anchor" type="Marker2D" parent="EdgeRight" unique_id=1424297416]
+position = Vector2(55.426, 0)
+
+[node name="Area2D" type="Area2D" parent="EdgeRight/Anchor" unique_id=263150801]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeRight/Anchor/Area2D" unique_id=1941607105]
+shape = SubResource("CapsuleShape2D_tmixu")
+
+[node name="Label" type="Label" parent="EdgeRight/Anchor" unique_id=1606866736]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.425999
+offset_top = -9.0
+offset_right = -7.4259987
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EdgeRight/Anchor" unique_id=1254229636]
+modulate = Color(1, 0.9647059, 0.79607844, 1)
+texture_filter = 1
+emitting = false
+amount = 1
+texture = ExtResource("2_8weyj")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_wohft")
+
+[node name="EdgeBottomRight" type="Area2D" parent="." unique_id=666040344]
+unique_name_in_owner = true
+
+[node name="Polygon2D" type="Polygon2D" parent="EdgeBottomRight" unique_id=563082559]
+color = Color(0.5, 0.5, 0.5, 1)
+polygon = PackedVector2Array(55.426, 32, 0, 64, 0, 56, 48.497, 28)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EdgeBottomRight" unique_id=1403146179]
+polygon = PackedVector2Array(55.426, 32, 0, 64, 0, 56, 48.497, 28)
+
+[node name="Anchor" type="Marker2D" parent="EdgeBottomRight" unique_id=1508715151]
+position = Vector2(27.713, 48)
+
+[node name="Area2D" type="Area2D" parent="EdgeBottomRight/Anchor" unique_id=2086506422]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeBottomRight/Anchor/Area2D" unique_id=601437064]
+rotation = 1.0471976
+shape = SubResource("CapsuleShape2D_tmixu")
+
+[node name="Label" type="Label" parent="EdgeBottomRight/Anchor" unique_id=152763627]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -12.712999
+offset_top = -24.0
+offset_right = 5.2870007
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.5235988
+pivot_offset = Vector2(9, 18)
+theme_override_font_sizes/font_size = 12
+text = "SE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EdgeBottomRight/Anchor" unique_id=997874994]
+modulate = Color(1, 0.9647059, 0.79607844, 1)
+texture_filter = 1
+emitting = false
+amount = 1
+texture = ExtResource("2_8weyj")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_wohft")
+
+[node name="EdgeBottomLeft" type="Area2D" parent="." unique_id=1716443494]
+unique_name_in_owner = true
+
+[node name="Polygon2D" type="Polygon2D" parent="EdgeBottomLeft" unique_id=1708309561]
+color = Color(0.6, 0.6, 0.6, 1)
+polygon = PackedVector2Array(0, 64, -55.426, 32, -48.497, 28, 0, 56)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EdgeBottomLeft" unique_id=1448113697]
+polygon = PackedVector2Array(0, 64, -55.426, 32, -48.497, 28, 0, 56)
+
+[node name="Anchor" type="Marker2D" parent="EdgeBottomLeft" unique_id=255550285]
+position = Vector2(-27.713, 48)
+
+[node name="Area2D" type="Area2D" parent="EdgeBottomLeft/Anchor" unique_id=607760718]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeBottomLeft/Anchor/Area2D" unique_id=613884033]
+rotation = 2.0943952
+shape = SubResource("CapsuleShape2D_tmixu")
+
+[node name="Label" type="Label" parent="EdgeBottomLeft/Anchor" unique_id=1806834483]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.286999
+offset_top = -24.0
+offset_right = 15.713001
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.5235988
+pivot_offset = Vector2(12, 18)
+theme_override_font_sizes/font_size = 12
+text = "SW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EdgeBottomLeft/Anchor" unique_id=1397518291]
+modulate = Color(1, 0.9647059, 0.79607844, 1)
+texture_filter = 1
+emitting = false
+amount = 1
+texture = ExtResource("2_8weyj")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_wohft")
+
+[node name="EdgeLeft" type="Area2D" parent="." unique_id=2106241284]
+unique_name_in_owner = true
+
+[node name="Polygon2D" type="Polygon2D" parent="EdgeLeft" unique_id=696009905]
+color = Color(0.5, 0.5, 0.5, 1)
+polygon = PackedVector2Array(-55.426, 32, -55.426, -32, -48.497, -28, -48.497, 28)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EdgeLeft" unique_id=1791493847]
+polygon = PackedVector2Array(-55.426, 32, -55.426, -32, -48.497, -28, -48.497, 28)
+
+[node name="Anchor" type="Marker2D" parent="EdgeLeft" unique_id=1049676314]
+position = Vector2(-55.426, 0)
+
+[node name="Area2D" type="Area2D" parent="EdgeLeft/Anchor" unique_id=1628050776]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeLeft/Anchor/Area2D" unique_id=676542018]
+shape = SubResource("CapsuleShape2D_tmixu")
+
+[node name="Label" type="Label" parent="EdgeLeft/Anchor" unique_id=73227555]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 7.4259987
+offset_top = -9.0
+offset_right = 25.425999
+offset_bottom = 9.0
+grow_vertical = 2
+pivot_offset = Vector2(18, 9)
+theme_override_font_sizes/font_size = 12
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EdgeLeft/Anchor" unique_id=895872126]
+modulate = Color(1, 0.9647059, 0.79607844, 1)
+texture_filter = 1
+emitting = false
+amount = 1
+texture = ExtResource("2_8weyj")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_wohft")
+
+[node name="EdgeTopLeft" type="Area2D" parent="." unique_id=1006785171]
+unique_name_in_owner = true
+
+[node name="Polygon2D" type="Polygon2D" parent="EdgeTopLeft" unique_id=1158970006]
+color = Color(0.6, 0.6, 0.6, 1)
+polygon = PackedVector2Array(-55.426, -32, 0, -64, 0, -56, -48.497, -28)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EdgeTopLeft" unique_id=2030439026]
+polygon = PackedVector2Array(-55.426, -32, 0, -64, 0, -56, -48.497, -28)
+
+[node name="Anchor" type="Marker2D" parent="EdgeTopLeft" unique_id=1847304777]
+position = Vector2(-27.713, -48)
+
+[node name="Area2D" type="Area2D" parent="EdgeTopLeft/Anchor" unique_id=1262537794]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeTopLeft/Anchor/Area2D" unique_id=129136375]
+rotation = 1.0471976
+shape = SubResource("CapsuleShape2D_tmixu")
+
+[node name="Label" type="Label" parent="EdgeTopLeft/Anchor" unique_id=2072997492]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.286999
+offset_top = 6.0
+offset_right = 15.713001
+offset_bottom = 24.0
+grow_horizontal = 2
+rotation = -0.5235988
+pivot_offset = Vector2(12, 0)
+theme_override_font_sizes/font_size = 12
+text = "NW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EdgeTopLeft/Anchor" unique_id=405335851]
+modulate = Color(1, 0.9647059, 0.79607844, 1)
+texture_filter = 1
+emitting = false
+amount = 1
+texture = ExtResource("2_8weyj")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_wohft")
+
+[node name="BadgeSprite" type="Sprite2D" parent="." unique_id=1965968774]
+unique_name_in_owner = true

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dv8d5vtwsno1h"]
+
+[ext_resource type="PackedScene" uid="uid://ce6li67phjy3" path="res://src/classes/hex_nodes/hex_node.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://4r2li5a74lwy" path="res://src/classes/hex_nodes/operators/arithmetic/neg_hex.gd" id="2_script"]
+
+[node name="NegHex" unique_id=761018241 instance=ExtResource("1_base")]
+script = ExtResource("2_script")

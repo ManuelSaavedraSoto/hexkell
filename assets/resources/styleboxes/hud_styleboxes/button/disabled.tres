@@ -1,0 +1,16 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://bm1w7bhv2a5rk"]
+
+[ext_resource type="Texture2D" uid="uid://cte0gh83o3es6" path="res://assets/spritesheets/ui_sprite_sheet.svg" id="1_lpgvj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmcmg"]
+resource_name = "button_default"
+atlas = ExtResource("1_lpgvj")
+region = Rect2(414, 164, 48, 48)
+
+[resource]
+texture = SubResource("AtlasTexture_hmcmg")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.16470589, 0.24705882, 0.27450982, 1)

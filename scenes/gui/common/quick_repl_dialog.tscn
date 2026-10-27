@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bcleddmj1i4qd"]
+
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="1_03v64"]
+[ext_resource type="Script" uid="uid://bf03mof3twr3e" path="res://scenes/gui/common/quick_repl_dialog.gd" id="1_repl"]
+[ext_resource type="Shader" uid="uid://xt1wdslo8lbh" path="res://assets/shaders/blur.gdshader" id="3_7sdri"]
+[ext_resource type="Texture2D" uid="uid://bfn25pmrb21bq" path="res://assets/icons/buttons/cross.tres" id="4_03v64"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfcfl"]
+shader = ExtResource("3_7sdri")
+shader_parameter/blur_amount = 1.5
+
+[node name="QuickReplDialog" type="Control" unique_id=1898687294]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_03v64")
+script = ExtResource("1_repl")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=1140180036]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_rfcfl")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1773663359]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer" unique_id=1379978021]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/Panel" unique_id=8187228]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/Margin" unique_id=2082979070]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="CenterContainer/Panel/Margin/VBoxContainer" unique_id=278310789]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/Margin/VBoxContainer/Header" unique_id=718215774]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "HEXKELL  QUICK REPL"
+
+[node name="HintLabel" type="Label" parent="CenterContainer/Panel/Margin/VBoxContainer/Header" unique_id=408255612]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "Esc to close · ↑/↓ history"
+
+[node name="InputRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/VBoxContainer" unique_id=658317161]
+layout_mode = 2
+
+[node name="ReplInput" type="LineEdit" parent="CenterContainer/Panel/Margin/VBoxContainer/InputRow" unique_id=1756781563]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Type an expression and press Enter…"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/Panel/Margin/VBoxContainer/InputRow" unique_id=1591389640]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Close (Esc)"
+theme_override_colors/icon_normal_color = Color(0.54901963, 0.54901963, 0.6, 1)
+icon = ExtResource("4_03v64")
+flat = true
+
+[node name="ResultLabel" type="RichTextLabel" parent="CenterContainer/Panel/Margin/VBoxContainer" unique_id=2137773457]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.85, 0.92, 1, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+fit_content = true
+scroll_active = false

@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://bm7rqiu65sodo"]
+
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="1_drq35"]
+[ext_resource type="Script" uid="uid://dmgddoku3pvhl" path="res://scenes/gui/pause_menu/pause_menu.gd" id="2_uw1ws"]
+[ext_resource type="Shader" uid="uid://xt1wdslo8lbh" path="res://assets/shaders/blur.gdshader" id="3_wl0wv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_awho0"]
+shader = ExtResource("3_wl0wv")
+shader_parameter/blur_amount = 1.5
+
+[sub_resource type="InputEventAction" id="InputEventAction_wl0wv"]
+action = &"cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_uw1ws"]
+events = [SubResource("InputEventAction_wl0wv")]
+
+[node name="PauseMenu" type="Control" unique_id=94346893]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_drq35")
+script = ExtResource("2_uw1ws")
+
+[node name="Blur" type="ColorRect" parent="." unique_id=836910471]
+material = SubResource("ShaderMaterial_awho0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1109860802]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.421875
+anchor_top = 0.3148148
+anchor_right = 0.578125
+anchor_bottom = 0.6851852
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 200)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2065090199]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1988193244]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1927712967]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1191854040]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=783807078]
+unique_name_in_owner = true
+layout_mode = 2
+shortcut = SubResource("Shortcut_uw1ws")
+text = "Resume"
+
+[node name="Codex" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=36555388]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Codex"
+
+[node name="Keybinds" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1244334512]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Key bindings"
+
+[node name="Settings" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1244334513]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1999138246]
+layout_mode = 2
+alignment = 1
+
+[node name="MainMenu" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1026929263]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main Menu"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1719111760]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+expand_icon = true

@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://bedw0ee3mfenp"]
+
+[ext_resource type="Theme" uid="uid://d3p1tdfir0rum" path="res://assets/resources/themes/hud_theme.tres" id="1_2qvhp"]
+[ext_resource type="Script" uid="uid://ivwv30ismear" path="res://scenes/gui/settings_menu/settings_menu.gd" id="1_j78aw"]
+[ext_resource type="Shader" uid="uid://xt1wdslo8lbh" path="res://assets/shaders/blur.gdshader" id="3_blur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
+shader = ExtResource("3_blur")
+shader_parameter/blur_amount = 1.5
+
+[node name="SettingsMenu" type="Control" unique_id=269605608]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2qvhp")
+script = ExtResource("1_j78aw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1195629716]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.101960786, 0.12156863, 1)
+
+[node name="BlurRect" type="ColorRect" parent="." unique_id=1195629717]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_blur")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1177710179]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.46961805
+anchor_top = 0.3742284
+anchor_right = 0.5303819
+anchor_bottom = 0.6257716
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1411480394]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="PanelContainer/HBoxContainer" unique_id=1685735784]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Settings"
+
+[node name="ArchmageOption" type="HBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=497398900]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ArchmageOption" unique_id=497398901]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Archmage mode (debug):"
+
+[node name="ArchmageToggle" type="CheckButton" parent="PanelContainer/HBoxContainer/ArchmageOption" unique_id=497398902]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Bypass renown thresholds — every hex unlocked, every job pending."
+
+[node name="CustomTemplatesOption" type="HBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=497398817]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/CustomTemplatesOption" unique_id=863855436]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Custom templates:"
+
+[node name="CustomTemplatesToggle" type="CheckButton" parent="PanelContainer/HBoxContainer/CustomTemplatesOption" unique_id=1794282468]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CustomTemplatesPathButton" type="Button" parent="PanelContainer/HBoxContainer/CustomTemplatesOption" unique_id=1751590020]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select file..."
+
+[node name="UnloadTemplatesButton" type="Button" parent="PanelContainer/HBoxContainer/CustomTemplatesOption" unique_id=1928473651]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Manage"
+
+[node name="CustomExercisesOption" type="HBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=679106401]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/CustomExercisesOption" unique_id=1030656297]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Custom exercises:"
+
+[node name="CustomExercisesToggle" type="CheckButton" parent="PanelContainer/HBoxContainer/CustomExercisesOption" unique_id=754569314]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CustomExercisesPathButton" type="Button" parent="PanelContainer/HBoxContainer/CustomExercisesOption" unique_id=1575689310]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select file..."
+
+[node name="UnloadExercisesButton" type="Button" parent="PanelContainer/HBoxContainer/CustomExercisesOption" unique_id=1823746519]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Manage"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1877463251]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/HBoxContainer4" unique_id=1227823700]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete save file"
+
+[node name="DeleteSaveButton" type="Button" parent="PanelContainer/HBoxContainer/HBoxContainer4" unique_id=444448779]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Delete"
+
+[node name="BlueprintLibraryOption" type="HBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=444448901]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/BlueprintLibraryOption" unique_id=444448902]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete blueprint library"
+
+[node name="DeleteBlueprintsButton" type="Button" parent="PanelContainer/HBoxContainer/BlueprintLibraryOption" unique_id=444448903]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Blueprints persist across save files — this wipes the shared library."
+text = "Delete"
+
+[node name="ReplayTutorialOption" type="HBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=444448911]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ReplayTutorialOption" unique_id=444448912]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Replay tutorial"
+
+[node name="ReplayTutorialButton" type="Button" parent="PanelContainer/HBoxContainer/ReplayTutorialOption" unique_id=444448913]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "The chapter-0 tutorial restarts the next time you enter the editor."
+text = "Replay"
+
+[node name="BackButton" type="Button" parent="PanelContainer/HBoxContainer" unique_id=1543126881]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return to main menu"
