@@ -6,39 +6,6 @@ tuple / range literals) with a visual hex-grid editor that compiles
 to that language's text form. Players solve programming "jobs" by
 building hex graphs.
 
-The name is provisional. "Hexkell" shows up internally as the
-language / editor name.
-
----
-
-## Status (May 2026)
-
-- **Language runtime** (parser + interpreter + std prelude) is in
-  `src/classes/`. Mature; 24 parser tests, 12 lexer tests, plus the
-  interpreter coverage under `test/unit/interpreter/`. **126 tests
-  total, all passing.**
-- **Text editor scene** (`scenes/gui/editor/`) is the current
-  shipping gameplay loop — exercises, templates, chapters, Renown
-  via `SaveManager`. Stable; will be re-fronted (not rewritten) by
-  the hex editor.
-- **Hex editor prototype** (`scenes/gui/hex_editor/`) is feature-
-  complete for the v3 prototype phases (see `docs/TODO.md` for the
-  full status). Produces parseable program text;
-  emits color-emoji-substituted display text; live preview;
-  validate-before-run; undo/redo; rich tooltips; rotation-aware
-  config sidebar.
-- **Hex-editor gameplay loop** (Phase 19) is now playable: six
-  persistent workspace tabs, a left-side jobs panel that submits
-  the current tab against `Checker.check_answer`, palette
-  progression gated on `SaveManager.unlocked_hex_scripts`, and a
-  Ctrl+R Quick REPL bound to the active tab's environment. The
-  blueprints library + capture/stamp + Ctrl+S/C/V clipboard now
-  ship. Remaining: full per-tab graph persistence + chapter intros
-  (see `docs/TODO.md` v3 section). The Main Menu's Play button
-  routes to the hex editor.
-
----
-
 ## Repository layout
 
 ```
@@ -515,36 +482,3 @@ exercise still works.
   chapters unlock them; user-saved templates (created via the in-editor
   "Save" button) are always available.
 - `examples` are full code samples loaded into the editor from the menu.
-
-### Loading custom files
-
-The editor exposes upload buttons that call
-`TemplateManager.import_custom_exercise_file(path)` and
-`import_custom_template_file(path)`. Each upload is copied into
-`user://uploaded_exercises/` (or `user://uploaded_templates/`) and remembered
-in `user://template_settings.json`. Custom files are loaded on top of the
-defaults only while the corresponding toggle (`use_custom_exercises` /
-`use_custom_templates`) is enabled; later entries override earlier ones.
-
-To author a file offline, drop a JSON document with the structure above into
-that directory directly, or upload it from the editor.
-
----
-
-## Exercise progression goals (Spanish)
-
-Translation hint: ejercicio = exercise, librería estandar = std library.
-
-3 ejercicios completados → 1 ejercicio siguiente categoría
-4 ejercicios completados → 2
-5 → 5
-
-- 5 ejercicios tutoriales
-- 5 ejercicios listas/tuplas
-- 5 ejercicios pattern-matching
-- 5 ejercicios recursión
-- 5 ejercicios composición
-- 5 ejercicios curryficación
-- 5 ejercicios librería estandar
-
-Learn a Haskell for Good.
